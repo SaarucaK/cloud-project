@@ -1,4 +1,3 @@
-# pytype: skip-file
 import numpy as np
 import random
 import time
