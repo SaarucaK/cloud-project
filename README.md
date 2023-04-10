@@ -1,4 +1,4 @@
-# Cloud Computing project
+# Cloud Computing Project
 ## Project Group: W2<br />
 Saaruca Kugarajh (100751441)<br />
 Denishan Savarimuthu (100742526)<br />
