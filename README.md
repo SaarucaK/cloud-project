@@ -18,7 +18,7 @@ Main Script: project_combined_pipeline.py<br />
 ### Dataflow Pipeline <br />
 Main Script: project_combined_pipeline_dataflow.py<br />
 ### Pub/Sub Pipeline <br />
-publisher_pipeline.py
-subscriber.py
+Publisher: publisher_pipeline.py<br />
+Subscriber: subscriber.py<br />
 
 
