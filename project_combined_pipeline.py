@@ -36,40 +36,40 @@ def SafetyMeasures(row):
     class_type = columns[23]
     slip_angle = columns[27]
 
-    # Convert the compliance value to a float
+    #Speed Limit Compliance: Check for cars traveling at speeds higher than the speed limit.
     compliance = float(total_velocity) <= float(speed_limit)
 
-    # Determine the driver awareness based on the velocity and acceleration values
+    #Driver Awareness: Check for cars stopped for an extended period of time.(velocity 0 and acceleration 0)
     if total_velocity == '0' and total_acceleration == '0':
         driver_awareness = "low awareness"
     else:
         driver_awareness = "high awareness"
 
-    # Determine if a potential collision is present
+    #Collision Safety: Predict whether or not a car will collide with another car. (same xCenter and yCenter at same time)
     if int(num_collision_vehicles) > 1:
         potential_collision = True
     else:
         potential_collision = False
 
-    # Determine if a pedestrian is present
+    #Pedestrian Safety: Check to see if there are pedestrians regularly crossing the road.
     if class_type == "pedestrian":
         pedestrian_presence = True
     else:
         pedestrian_presence = False
 
-    # Determine if a vulnerable user is present
+    #Vulnerable Road User Safety: (pedestrian, bicycle, motorcycle)Check to see if there are pedestrians regularly crossing the road.
     if class_type in ["pedestrian", "bicycle", "motorcycle"]:
         vulnerable_user = True
     else:
         vulnerable_user = False
 
-    # Determine if the slip angle is safe
+    ##Slip Angle: the angle between the direction in which a wheel is pointing and the direction in which it is actually traveling
     if abs(float(slip_angle)) >= 0 and abs(float(slip_angle)) < 20:
         slip_angle_safety = "safe slip angle"
     else:
         slip_angle_safety = "unsafe slip angle"
 
-    # Create a dictionary with the processed data
+    # Construct output message
     processed_data = {
         "track_id": track_id,
         "recording_id": recording_id,
@@ -82,9 +82,10 @@ def SafetyMeasures(row):
         "slip_angle_safety": slip_angle_safety
     }
 
-    # Return the processed data
+    #process data
     return processed_data
 
+#pipeline input and output
 with beam.Pipeline() as pipeline:
     (
         pipeline
